@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <title>Hello, world!</title>
+
+</head>
+<!-- Styles -->
+<style>
+  #chartdiv {
+    width: 100%;
+    height: 264px;
+
+
+  }
+
+  ;
+</style>
+
+<body>
+
+  <div class="row">
+    <div class="col-lg-4 mt-3">
+      <div style=" height: 320px; border: 1px solid #000">
+        <div>
+          <h3 class="ml-2">Run Email Stats</h3>
+          <div>
+            <hr class="m-0">
+          </div>
+        </div>
+        <div class="p-2">
+          <div id="chartdiv"></div>
+        </div>
+      </div>
+    </div>
+              
+    <div class="col-lg-4 mt-3">
+      <div style=" height: 320px; border: 1px solid #000">
+        <div>
+          <h3 class="ml-2">Run Email Stats</h3>
+          <div>
+            <hr class="m-0">
+          </div>
+        </div>
+        <div class="p-2">
+          <div id="chartdiv"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 mt-3">
+      <div style=" height: 320px; border: 1px solid #000">
+        <div>
+          <h3 class="ml-2" id="demo">Run Email Stats</h3>
+          <button onclick=getMessege()>Get</button>
+          <div>
+            <hr class="m-0">
+          </div>
+        </div>
+        <div class="p-2">
+          <div id="chartdiv"></div>
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+  <!-- Chart code -->
+  <script>
+  
+    function getMessege() {
+      document.getElementById("demo").innerHTML = "Hello world";
+    };
+
+    
+
+    am4core.ready(function () {
+
+      // Themes begin
+      am4core.useTheme(am4themes_animated);
+      // Themes end
+
+      var chart = am4core.create("chartdiv", am4charts.PieChart3D);
+      chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+
+      chart.data = [
+        {
+          country: "Lithuania",
+          litres: 501.9
+        },
+        {
+          country: "Czech Republic",
+          litres: 301.9
+        },
+        {
+          country: "Ireland",
+          litres: 201.1
+        },
+        {
+          country: "Germany",
+          litres: 165.8
+        },
+        {
+          country: "Australia",
+          litres: 139.9
+        },
+        {
+          country: "Austria",
+          litres: 128.3
+        }
+      ];
+
+      chart.innerRadius = am4core.percent(30);
+      chart.depth = 70;
+
+      chart.legend = new am4charts.Legend();
+
+      chart.legend.layout = "vertical";
+
+      chart.legend.position = "left";
+      chart.legend.fontSize = "11px";
+      chart.legend.valign = "middle";
+
+
+
+
+
+      var series = chart.series.push(new am4charts.PieSeries3D());
+      series.dataFields.value = "litres";
+      series.dataFields.depthValue = "litres";
+      series.dataFields.category = "country";
+      series.labels.template.disabled = true;
+
+      series.slices.template.cornerRadius = 5;
+      series.colors.step = 3;
+
+    }); // end am4core.ready()
+  </script>
+</body>
+
+</html>
